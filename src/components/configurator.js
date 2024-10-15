@@ -8,63 +8,19 @@ const Configurator = () => {
     const [listings, setListings] = useState([]);
 
     async function getListings(){
+        try {
+            const response = await axios.get('http://localhost:5000/api/listing/', {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyS2V5IjoiNDg2NTQ1NWYtMjlhMC00YzhmLTk5MzgtOGM0YmFiMjYxZWY2IiwidXNlcklkIjoiNjZmZjhhNWZmZDFmMjMyYmUwOTc1YTY2IiwiaWF0IjoxNzI4OTY1MTAzLCJleHAiOjE3Mjg5Njg3MDN9.go6MrZkOqdoJa0zXYcyBtZs6NAZFWoLwssZKM2qWCg8',
+            },
+            });
+            console.log('Data:', response.data.data.listings);
 
-        // const apiUrl = `https://localhost:5000/api/listing`;
-        // const headers = {
-        //     'Content-Type': 'application/json',
-        //     'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyS2V5IjoiNDg2NTQ1NWYtMjlhMC00YzhmLTk5MzgtOGM0YmFiMjYxZWY2IiwidXNlcklkIjoiNjZmZjhhNWZmZDFmMjMyYmUwOTc1YTY2IiwiaWF0IjoxNzI4OTA3MDM3LCJleHAiOjE3Mjg5MTA2Mzd9.GutfPX7LrFuENGknKJnVALTrsjJDKZpmTfq4APkGb5U',
-           
-        // };
-
-
-
-        // const response = await axios.get(apiUrl, {
-        // }, { headers });
-
-       // const getListings = async () => {
-            try {
-              const response = await axios.get('http://localhost:5000/api/listing/', {
-                headers: {
-                  'Content-Type': 'application/json',
-                'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyS2V5IjoiNDg2NTQ1NWYtMjlhMC00YzhmLTk5MzgtOGM0YmFiMjYxZWY2IiwidXNlcklkIjoiNjZmZjhhNWZmZDFmMjMyYmUwOTc1YTY2IiwiaWF0IjoxNzI4OTExMTM0LCJleHAiOjE3Mjg5MTQ3MzR9.KsHRX1u6aDrEwK_cAvYnWdnEUqknw-RpZ18Eqvp4i4Q',
-                },
-              });
-              console.log('Data:', response.data.data.listings);
-
-              setListings(response.data.data.listings);
-            } catch (error) {
-              console.error('Error fetching listings:', error.response?.data || error.message);
-            }
-        //  };
-          
-
-        // console.log(response.data);
-
-      
-
-
-
-
-        // try {
-        //     setIsLoading(true); // Set loading state when fetching starts
-        //     const response = await axiosRequest('get', url);
-        //     if(response.status){
-        //         const { patients, total: totalCount } = response.data;
-        //         setPatients(patients);
-        //         setTotalPages(Math.ceil(totalCount / pageSize));
-        //         if(patients.length === 0){
-        //             setErrorData('No data found.');
-        //             setIsLoading(false);
-        //         }
-        //     }else{
-        //         setErrorData('Somthing went wrong')
-        //         setIsLoading(false);
-        //     }
-        // }catch(error){
-        //     setErrorData(error.response.data.msg)
-        //     setIsLoading(false);
-        // }
-        
+            setListings(response.data.data.listings);
+        } catch (error) {
+            console.error('Error fetching listings:', error.response?.data || error.message);
+        }
     }
 
     useEffect(() => {
@@ -72,7 +28,6 @@ const Configurator = () => {
     }, []);
 
     const renderTableRows = () => {
-        console.log(listings);
         return listings.map((listing, index) => (
 
             <tr data-mls="SB24152719">

@@ -3,8 +3,23 @@ import './App.css';
 import Header from './components/header';
 import Footer from './components/footer';
 import Configurator from './components/configurator';
+import AddSeriesModal from './components/AddSeriesModal';
+
+import { useState, useEffect, useContext } from "react";
 
 function App() {
+
+    const [showModal, setShowModal] = useState(false);
+
+    const handleOpenModal = () => {
+      setShowModal(true);
+    };
+  
+    const handleCloseModal = () => {
+      setShowModal(false);
+    };
+
+
   return (
     <>
     <div className="App">
@@ -25,6 +40,10 @@ function App() {
                                 <span className="series">Series</span>
                             </div>
                         </div>
+
+                        <AddSeriesModal show={showModal} onClose={handleCloseModal} title="Modal Title">
+                            <p>This is a modal window.</p>
+                        </AddSeriesModal>
                         <div className="col-xs-8 col-sm-4 col-md-3">
                             <input id="collectionid_input" type="hidden" name="collection-id"/>
                             <input id="call_ajax_claim" type="hidden" value = "1"/>
@@ -38,7 +57,9 @@ function App() {
                                 <option value="MzExMzU1MDI" >10th-11th August 2024
                                 </option>
                             </select>
-                            <a href="" className="add-series" data-toggle="modal" data-target="#myModal" data-backdrop="static" data-keyboard="false">Add new Series</a>
+                            {/* <a href="" className="add-series" data-toggle="modal" data-target="#myModal" data-backdrop="static" data-keyboard="false" onClick={handleOpenModal}>Add new Series</a> */}
+
+                            <button onClick={handleOpenModal}>Open Modal</button>
                         </div>
                         <div className=" col-xs-0 col-sm-3 col-md-4">
 
