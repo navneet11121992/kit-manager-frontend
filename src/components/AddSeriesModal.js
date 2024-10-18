@@ -3,6 +3,8 @@ import React from 'react';
 // import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 // import './Modal.css'; // Optional: Use this if you have custom styling for the modal
 
+// this is a test comment
+
 const AddSeriesModal = ({ show, onClose, title, children }) => {
 //   if (!show) {
 //     return null;
